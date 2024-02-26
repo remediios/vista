@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
+import { cn } from '@/lib/utils';
 
 const MapFilterItems = () => {
   const searchParams = useSearchParams();
@@ -20,11 +21,17 @@ const MapFilterItems = () => {
   );
 
   return (
-    <div className="flex gap-x-10 mt-5 w-full overflow-x-scroll no-scrollbar">
+    <div className="flex gap-x-10 mt-5 w-full overflow-x-scroll no-scrollbar justify-center">
       {categoryItems.map((item) => (
         <Link
           key={item.id}
           href={`${pathName}?${createQueryString('filter', item.name)}`}
+          className={cn(
+            search === item.name
+              ? 'border-b-2 border-black pb-2 flex-shrink-0'
+              : ' opacity-70 flex-shrink-0',
+            'flex flex-col gap-y-3 items-center'
+          )}
         >
           <div className="relative w-6 h-6">
             <Image
