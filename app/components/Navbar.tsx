@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import DesktopLogo from './DesktopLogo';
+import UserNav from './UserNav';
 
 const Navbar = () => {
   return (
@@ -11,6 +12,7 @@ const Navbar = () => {
         <div className="rounded-full border px-5 py-2">
           <h1>Hello from the search</h1>
         </div>
+        <UserNav />
       </div>
     </nav>
   );
