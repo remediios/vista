@@ -26,5 +26,23 @@ export async function createRentalHome({ userId }: { userId: string }) {
     !data.addedLocation
   ) {
     return redirect(`/create/${data.id}/structure`);
+  } else if (!data.addedCategory && !data.addedDescription) {
+    return redirect(`/create/${data.id}/description`);
   }
+}
+
+export async function createCategoryPage(formData: FormData) {
+  const categoryName = formData.get('categoryName') as string;
+  const homeId = formData.get('homeId') as string;
+  const data = await prisma.home.update({
+    where: {
+      id: homeId as string,
+    },
+    data: {
+      categoryName: categoryName as string,
+      addedCategory: true,
+    },
+  });
+
+  return redirect(`/create/${homeId}/description`);
 }

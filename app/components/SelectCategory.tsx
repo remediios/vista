@@ -2,20 +2,16 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardHeader } from '@/components/ui/card';
 import { categoryItems } from '../lib/categoryItems';
 
 const SelectCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
+    undefined
+  );
   return (
     <div className="grid grid-cols-4 gap-8 mt-10 w-3/5 mx-auto mb-36">
+      <input type="hidden" name="categoryName" value={selectedCategory} />
       {categoryItems.map((item) => (
         <div key={item.id} className="cursor-pointer">
           <Card
