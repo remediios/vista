@@ -14,6 +14,7 @@ import {
   LogoutLink,
 } from '@kinde-oss/kinde-auth-nextjs/components';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import Link from 'next/link';
 
 const UserNav = async () => {
   const { getUser } = getKindeServerSession();
@@ -37,6 +38,40 @@ const UserNav = async () => {
       <DropdownMenuContent align="end" className="w-[200px]">
         {user ? (
           <>
+            <DropdownMenuItem>
+              <form className="w-full">
+                <button type="submit" className="w-full text-start">
+                  Rent your home
+                </button>
+              </form>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/reservations" className="w-full">
+                Reservations
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-homes" className="w-full">
+                My Listings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-homes" className="w-full">
+                My Listings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-favourites" className="w-full">
+                My Favourites
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/reservations" className="w-full">
+                My Reservations
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+
             <DropdownMenuItem>
               <LogoutLink className="w-full">Logout</LogoutLink>
             </DropdownMenuItem>
