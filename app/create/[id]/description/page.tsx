@@ -1,3 +1,4 @@
+import ButtonBar from '@/app/components/ButtonBar';
 import Counter from '@/app/components/Counter';
 import { Card, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -78,6 +79,7 @@ const DescriptionPage = () => {
             </CardHeader>
           </Card>
         </div>
+        <ButtonBar />
       </form>
     </>
   );

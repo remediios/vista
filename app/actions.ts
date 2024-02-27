@@ -13,12 +13,12 @@ export async function createRentalHome({ userId }: { userId: string }) {
   });
 
   if (data === null) {
-    //does a user have an home
     const data = await prisma.home.create({
       data: {
         userId: userId,
       },
     });
+
     return redirect(`/create/${data.id}/structure`);
   } else if (
     !data.addedCategory &&
@@ -26,7 +26,7 @@ export async function createRentalHome({ userId }: { userId: string }) {
     !data.addedLocation
   ) {
     return redirect(`/create/${data.id}/structure`);
-  } else if (!data.addedCategory && !data.addedDescription) {
+  } else if (data.addedCategory && !data.addedDescription) {
     return redirect(`/create/${data.id}/description`);
   }
 }
@@ -36,10 +36,10 @@ export async function createCategoryPage(formData: FormData) {
   const homeId = formData.get('homeId') as string;
   const data = await prisma.home.update({
     where: {
-      id: homeId as string,
+      id: homeId,
     },
     data: {
-      categoryName: categoryName as string,
+      categoryName: categoryName,
       addedCategory: true,
     },
   });
