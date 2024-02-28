@@ -1,5 +1,6 @@
 'use server';
 import prisma from '@/app/lib/db';
+import { supabase } from '@/lib/supabase';
 import { redirect } from 'next/navigation';
 
 export async function createRentalHome({ userId }: { userId: string }) {
@@ -45,4 +46,43 @@ export async function createCategoryPage(formData: FormData) {
   });
 
   return redirect(`/create/${homeId}/description`);
+}
+
+export async function createDescription(formData: FormData) {
+  const homeId = formData.get('homeId') as string;
+
+  const title = formData.get('title') as string;
+  const description = formData.get('description') as string;
+  const price = formData.get('price');
+  const imageFile = formData.get('image') as File;
+
+  const guestsNr = formData.get('guestCounter') as string;
+  const roomsNr = formData.get('roomCounter') as string;
+  const bathroomsNr = formData.get('bathroomCounter') as string;
+  console.log(guestsNr, roomsNr, bathroomsNr);
+
+  const { data: imageSupabaseData } = await supabase.storage
+    .from('images')
+    .upload(`${imageFile.name}-${new Date()}`, imageFile, {
+      contentType: 'image/png',
+      cacheControl: '2592000', //1-year-of-caching
+    });
+
+  const data = await prisma.home.update({
+    where: {
+      id: homeId,
+    },
+    data: {
+      title,
+      description,
+      price: Number(price),
+      guests: guestsNr,
+      bedrooms: roomsNr,
+      bathrooms: bathroomsNr,
+      photo: imageSupabaseData?.path,
+      addedDescription: true,
+    },
+  });
+
+  return redirect(`/create/${homeId}/address`);
 }

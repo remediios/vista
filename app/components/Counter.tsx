@@ -3,11 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
 
-const Counter = () => {
+const Counter = ({ counterType }: { counterType: string }) => {
   const [count, setCount] = useState(0);
 
   return (
     <div className="flex items-center gap-x-4">
+      <input type="hidden" name={counterType} value={count} readOnly />
       <Button
         variant="outline"
         size="icon"
