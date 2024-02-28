@@ -21,7 +21,7 @@ const MapFilterItems = () => {
   );
 
   return (
-    <div className="flex gap-x-10 mt-5 w-full overflow-x-scroll no-scrollbar justify-center">
+    <div className="flex gap-x-10 mt-5 w-full overflow-x-scroll no-scrollbar justify-start ">
       {categoryItems.map((item) => (
         <Link
           key={item.id}
@@ -30,7 +30,7 @@ const MapFilterItems = () => {
             search === item.name
               ? 'border-b-2 border-black pb-2 flex-shrink-0'
               : ' opacity-70 flex-shrink-0',
-            'flex flex-col gap-y-3 items-center'
+            'flex flex-col gap-y-3 items-center hover:border-b-2 hover:border-black hover:opacity-80'
           )}
         >
           <div className="relative w-6 h-6">

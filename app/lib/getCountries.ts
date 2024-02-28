@@ -6,6 +6,7 @@ const countriesFormatted = countries.map((country) => ({
   flag: country.flag,
   latLang: country.latlng,
   region: country.region,
+  subRegion: country.subregion,
 }));
 
 export const useCountries = () => {
