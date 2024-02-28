@@ -1,13 +1,23 @@
 import prisma from './lib/db';
 import MapFilterItems from './components/MapFilterItems';
 import ListingCard from './components/home/ListingCard';
+import { Suspense } from 'react';
+import LoadingSkeleton from './components/LoadingSkeleton';
+import NoItem from './components/home/NoItem';
 
-async function getData() {
+interface SearchParams {
+  searchParams?: {
+    filter?: string;
+  };
+}
+
+async function getData({ searchParams }: SearchParams) {
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
       addedDescription: true,
       addedLocation: true,
+      categoryName: searchParams?.filter ?? undefined,
     },
     select: {
       photo: true,
@@ -17,25 +27,44 @@ async function getData() {
       country: true,
     },
   });
+
   return data;
 }
 
-export default async function Home() {
-  const data = await getData();
+export default function Home({ searchParams }: SearchParams) {
   return (
     <div className="container mx-auto px-5 lg:px-10">
       <MapFilterItems />
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
-        {data.map((home) => (
-          <ListingCard
-            key={home.id}
-            imagePath={home.photo as string}
-            description={home.description as string}
-            location={home.country as string}
-            price={home.price as number}
-          />
-        ))}
-      </div>
+      <Suspense key={searchParams?.filter} fallback={<LoadingSkeleton />}>
+        <ShowRentalHomes searchParams={searchParams} />
+      </Suspense>
     </div>
+  );
+}
+
+async function ShowRentalHomes({ searchParams }: SearchParams) {
+  const data = await getData({ searchParams });
+
+  return (
+    <>
+      {data.length === 0 ? (
+        <NoItem
+          title="Sorry, no rental homes were found for this category..."
+          description="Please check other categories or create your own rental home!"
+        />
+      ) : (
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8 pb-10">
+          {data.map((home) => (
+            <ListingCard
+              key={home.id}
+              imagePath={home.photo as string}
+              description={home.description as string}
+              location={home.country as string}
+              price={home.price as number}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }

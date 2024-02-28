@@ -30,7 +30,7 @@ const ListingCard = ({
           />
         </div>
 
-        <h3 className="font-medium text-base">
+        <h3 className="font-medium text-base mt-2">
           {country?.flag} {country?.label}, {country?.region}
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-2">
