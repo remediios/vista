@@ -30,7 +30,7 @@ const MapFilterItems = () => {
             search === item.name
               ? 'border-b-2 border-black pb-2 flex-shrink-0'
               : ' opacity-70 flex-shrink-0',
-            'flex flex-col gap-y-3 items-center hover:border-b-2 hover:border-black hover:opacity-80'
+            'flex flex-col gap-y-3 items-center hover:drop-shadow-lg hover:opacity-90'
           )}
         >
           <div className="relative w-6 h-6">

@@ -20,15 +20,16 @@ const ListingCard = ({
 
   return (
     <div className="flex flex-col gap-y-2">
-      <div className="relative h-72">
-        <Image
-          src={`https://glwjdwtkbgtpdembqjlt.supabase.co/storage/v1/object/public/images/${imagePath}`}
-          alt="home image"
-          fill
-          className="rounded-lg h-full object-cover mb-2"
-        />
-      </div>
       <Link href="/">
+        <div className="relative h-72">
+          <Image
+            src={`https://glwjdwtkbgtpdembqjlt.supabase.co/storage/v1/object/public/images/${imagePath}`}
+            alt="home image"
+            fill
+            className="rounded-lg h-full object-cover mb-2"
+          />
+        </div>
+
         <h3 className="font-medium text-base">
           {country?.flag} {country?.label}, {country?.region}
         </h3>
