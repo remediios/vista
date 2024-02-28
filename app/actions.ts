@@ -59,7 +59,6 @@ export async function createDescription(formData: FormData) {
   const guestsNr = formData.get('guestCounter') as string;
   const roomsNr = formData.get('roomCounter') as string;
   const bathroomsNr = formData.get('bathroomCounter') as string;
-  console.log(guestsNr, roomsNr, bathroomsNr);
 
   const { data: imageSupabaseData } = await supabase.storage
     .from('images')
@@ -85,4 +84,20 @@ export async function createDescription(formData: FormData) {
   });
 
   return redirect(`/create/${homeId}/address`);
+}
+
+export async function createAddressLocation(formData: FormData) {
+  const homeId = formData.get('homeId') as string;
+  const countryValue = formData.get('countryValue') as string;
+  const data = await prisma.home.update({
+    where: {
+      id: homeId,
+    },
+    data: {
+      country: countryValue,
+      addedLocation: true,
+    },
+  });
+
+  return redirect(`/`);
 }

@@ -6,8 +6,9 @@ import { useCountries } from '../lib/getCountries';
 import { icon } from 'leaflet';
 
 const ICON = icon({
-  iconUrl: '',
-  iconSize: [25, 41],
+  iconUrl:
+    'https://images.vexels.com/media/users/3/131261/isolated/preview/b2e48580147ca0ed3f970f30bf8bb009-karten-standortmarkierung.png',
+  iconSize: [50, 50],
 });
 
 const Map = ({ locationValue }: { locationValue: string }) => {

@@ -1,12 +1,13 @@
 'use client';
 
+import { createAddressLocation } from '@/app/actions';
 import ButtonBar from '@/app/components/ButtonBar';
 import SelectCountry from '@/app/components/SelectCountry';
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-const AddressPage = () => {
+const AddressPage = ({ params }: { params: { id: string } }) => {
   const [locationValue, setLocationValue] = useState<string>('');
 
   const LazyMap = dynamic(() => import('@/app/components/Map'), {
@@ -20,7 +21,9 @@ const AddressPage = () => {
           Where is your home located?
         </h2>
       </div>
-      <form>
+      <form action={createAddressLocation}>
+        <input type="hidden" name="homeId" value={params.id} />
+        <input type="hidden" name="countryValue" value={locationValue} />
         <div className="w-3/5 mx-auto mb-36">
           <SelectCountry setLocationValue={setLocationValue} />
           <LazyMap locationValue={locationValue} />
