@@ -1,7 +1,10 @@
 import { useCountries } from '@/app/lib/getCountries';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FavouriteButton } from '../SubmitButtons';
+import {
+  AddToFavouriteButton,
+  DeleteFromFavouriteButton,
+} from '../SubmitButtons';
 import { addToFavourite } from '@/app/actions';
 
 interface IListingCardProps {
@@ -13,6 +16,7 @@ interface IListingCardProps {
   isInFavouriteList: boolean;
   favouriteId: string;
   homeId: string;
+  pathName: string;
 }
 
 const ListingCard = ({
@@ -24,6 +28,7 @@ const ListingCard = ({
   isInFavouriteList,
   favouriteId,
   homeId,
+  pathName,
 }: IListingCardProps) => {
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(location);
@@ -40,12 +45,13 @@ const ListingCard = ({
         {userId && (
           <div className="z-0 absolute top-2 right-2">
             {isInFavouriteList ? (
-              <FavouriteButton />
+              <DeleteFromFavouriteButton />
             ) : (
               <form action={addToFavourite}>
                 <input type="hidden" name="homeId" value={homeId} />
                 <input type="hidden" name="userId" value={userId} />
-                <FavouriteButton />
+                <input type="hidden" name="pathName" value={pathName} />
+                <AddToFavouriteButton />
               </form>
             )}
           </div>

@@ -74,6 +74,7 @@ async function ShowRentalHomes({ searchParams }: SearchParams) {
               favouriteId={home.Favourite[0]?.id}
               isInFavouriteList={home.Favourite.length > 0 ? true : false}
               homeId={home.id}
+              pathName="/" //revalidate only the homepage (actions)
             />
           ))}
         </div>

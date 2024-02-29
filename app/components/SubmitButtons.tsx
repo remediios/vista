@@ -22,7 +22,7 @@ export const CreationSubmit = () => {
   );
 };
 
-export const FavouriteButton = () => {
+export const AddToFavouriteButton = () => {
   const { pending } = useFormStatus();
 
   return (
@@ -44,6 +44,34 @@ export const FavouriteButton = () => {
           type="submit"
         >
           <Heart className="w-4 h-4" />
+        </Button>
+      )}
+    </>
+  );
+};
+
+export const DeleteFromFavouriteButton = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button
+          variant="outline"
+          size="icon"
+          disabled
+          className="bg-primary-foreground"
+        >
+          <Loader2 className="h-4 w-4 animate-spin text-primary" />
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-primary-foreground"
+          type="submit"
+        >
+          <Heart className="w-4 h-4 text-primary" fill="#16a34a" />
         </Button>
       )}
     </>

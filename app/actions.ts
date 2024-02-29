@@ -1,6 +1,7 @@
 'use server';
 import prisma from '@/app/lib/db';
 import { supabase } from '@/lib/supabase';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 export async function createRentalHome({ userId }: { userId: string }) {
@@ -123,6 +124,8 @@ export async function createAddressLocation(formData: FormData) {
 export async function addToFavourite(formData: FormData) {
   const homeId = formData.get('homeId') as string;
   const userId = formData.get('userId') as string;
+  const pathName = formData.get('pathName') as string;
+  console.log(pathName);
 
   const data = await prisma.favourite.create({
     data: {
@@ -130,4 +133,6 @@ export async function addToFavourite(formData: FormData) {
       userId: userId,
     },
   });
+
+  revalidatePath(pathName);
 }
