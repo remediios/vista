@@ -4,14 +4,16 @@ import ListingCard from './components/home/ListingCard';
 import { Suspense } from 'react';
 import LoadingSkeleton from './components/LoadingSkeleton';
 import NoItem from './components/home/NoItem';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 
 interface SearchParams {
   searchParams?: {
     filter?: string;
   };
+  userId?: string | undefined;
 }
 
-async function getData({ searchParams }: SearchParams) {
+async function getData({ searchParams, userId }: SearchParams) {
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
@@ -25,6 +27,11 @@ async function getData({ searchParams }: SearchParams) {
       price: true,
       description: true,
       country: true,
+      Favourite: {
+        where: {
+          userId: userId ?? undefined,
+        },
+      },
     },
   });
 
@@ -43,7 +50,9 @@ export default function Home({ searchParams }: SearchParams) {
 }
 
 async function ShowRentalHomes({ searchParams }: SearchParams) {
-  const data = await getData({ searchParams });
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  const data = await getData({ searchParams, userId: user?.id });
 
   return (
     <>
@@ -61,6 +70,10 @@ async function ShowRentalHomes({ searchParams }: SearchParams) {
               description={home.description as string}
               location={home.country as string}
               price={home.price as number}
+              userId={user?.id}
+              favouriteId={home.Favourite[0]?.id}
+              isInFavouriteList={home.Favourite.length > 0 ? true : false}
+              homeId={home.id}
             />
           ))}
         </div>

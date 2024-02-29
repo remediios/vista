@@ -1,12 +1,18 @@
 import { useCountries } from '@/app/lib/getCountries';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FavouriteButton } from '../SubmitButtons';
+import { addToFavourite } from '@/app/actions';
 
 interface IListingCardProps {
   imagePath: string;
   description: string;
   location: string;
   price: number;
+  userId: string | undefined;
+  isInFavouriteList: boolean;
+  favouriteId: string;
+  homeId: string;
 }
 
 const ListingCard = ({
@@ -14,22 +20,38 @@ const ListingCard = ({
   imagePath,
   location,
   price,
+  userId,
+  isInFavouriteList,
+  favouriteId,
+  homeId,
 }: IListingCardProps) => {
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(location);
 
   return (
     <div className="flex flex-col gap-y-2">
+      <div className="relative h-72">
+        <Image
+          src={`https://glwjdwtkbgtpdembqjlt.supabase.co/storage/v1/object/public/images/${imagePath}`}
+          alt="home image"
+          fill
+          className="rounded-lg h-full object-cover mb-2"
+        />
+        {userId && (
+          <div className="z-0 absolute top-2 right-2">
+            {isInFavouriteList ? (
+              <FavouriteButton />
+            ) : (
+              <form action={addToFavourite}>
+                <input type="hidden" name="homeId" value={homeId} />
+                <input type="hidden" name="userId" value={userId} />
+                <FavouriteButton />
+              </form>
+            )}
+          </div>
+        )}
+      </div>
       <Link href="/">
-        <div className="relative h-72">
-          <Image
-            src={`https://glwjdwtkbgtpdembqjlt.supabase.co/storage/v1/object/public/images/${imagePath}`}
-            alt="home image"
-            fill
-            className="rounded-lg h-full object-cover mb-2"
-          />
-        </div>
-
         <h3 className="font-medium text-base mt-2">
           {country?.flag} {country?.label}, {country?.region}
         </h3>
