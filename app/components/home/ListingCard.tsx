@@ -5,7 +5,7 @@ import {
   AddToFavouriteButton,
   DeleteFromFavouriteButton,
 } from '../SubmitButtons';
-import { addToFavourite } from '@/app/actions';
+import { addToFavourite, deleteFromFavourite } from '@/app/actions';
 
 interface IListingCardProps {
   imagePath: string;
@@ -45,7 +45,12 @@ const ListingCard = ({
         {userId && (
           <div className="z-0 absolute top-2 right-2">
             {isInFavouriteList ? (
-              <DeleteFromFavouriteButton />
+              <form action={deleteFromFavourite}>
+                <input type="hidden" name="favouriteId" value={favouriteId} />
+                <input type="hidden" name="userId" value={userId} />
+                <input type="hidden" name="pathName" value={pathName} />
+                <DeleteFromFavouriteButton />
+              </form>
             ) : (
               <form action={addToFavourite}>
                 <input type="hidden" name="homeId" value={homeId} />

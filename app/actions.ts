@@ -125,12 +125,26 @@ export async function addToFavourite(formData: FormData) {
   const homeId = formData.get('homeId') as string;
   const userId = formData.get('userId') as string;
   const pathName = formData.get('pathName') as string;
-  console.log(pathName);
 
   const data = await prisma.favourite.create({
     data: {
       homeId: homeId,
       userId: userId,
+    },
+  });
+
+  revalidatePath(pathName);
+}
+
+export async function deleteFromFavourite(formData: FormData) {
+  const favouriteId = formData.get('favouriteId') as string;
+  const userId = formData.get('userId') as string;
+  const pathName = formData.get('pathName') as string;
+
+  const data = await prisma.favourite.delete({
+    where: {
+      id: favouriteId,
+      userId,
     },
   });
 
