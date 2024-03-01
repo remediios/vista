@@ -10,7 +10,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 0,
     name: 'beach',
-    description: 'This Property is close to the Beach.',
+    description: 'This rental home is close to the beach',
     title: 'Beach',
     imageUrl:
       'https://a0.muscache.com/pictures/10ce1091-c854-40f3-a2fb-defc2995bcaf.jpg',
@@ -18,7 +18,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 1,
     name: 'trending',
-    description: 'This is a Property which is trending.',
+    description: 'This trending rental home',
     title: 'Trending',
     imageUrl:
       'https://a0.muscache.com/pictures/3726d94b-534a-42b8-bca0-a0304d912260.jpg',
@@ -26,7 +26,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 2,
     name: 'beachfront',
-    description: 'This is a Property is close to the beachfront',
+    description: 'This is a rental home is close to a beach front',
     title: 'Beachfront',
     imageUrl:
       'https://a0.muscache.com/pictures/bcd1adc0-5cee-4d7a-85ec-f6730b0f8d0c.jpg',
@@ -34,7 +34,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 3,
     name: 'earthhome',
-    description: 'This Property is considerd a Earth Home',
+    description: 'This rental home is of type earth home',
     title: 'Earth Home',
     imageUrl:
       'https://a0.muscache.com/pictures/d7445031-62c4-46d0-91c3-4f29f9790f7a.jpg',
@@ -42,7 +42,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 4,
     name: 'luxe',
-    description: 'This Property is considerd Luxorious',
+    description: 'This is a luxurious property',
     title: 'Luxe',
     imageUrl:
       'https://a0.muscache.com/pictures/c8e2ed05-c666-47b6-99fc-4cb6edcde6b4.jpg',
@@ -50,7 +50,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 5,
     name: 'amazingView',
-    description: 'This property has an amazing View',
+    description: 'This rental home has an amazing view',
     title: 'Amazing View',
     imageUrl:
       'https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg',
@@ -58,7 +58,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 6,
     name: 'design',
-    description: 'This property puts a big focus on design ',
+    description: 'This rental home focus on design',
     title: 'Design',
     imageUrl:
       'https://a0.muscache.com/pictures/50861fca-582c-4bcc-89d3-857fb7ca6528.jpg',
@@ -66,7 +66,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 7,
     name: 'pool',
-    description: 'This property has an amazing Pool',
+    description: 'This property has an amazing pool',
     title: 'Pool',
     imageUrl:
       'https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg',
@@ -74,7 +74,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 8,
     name: 'tiny',
-    description: 'This property is considered a tiny home',
+    description: 'This property is considered as a tiny home',
     title: 'Tiny Home',
     imageUrl:
       'https://a0.muscache.com/pictures/3271df99-f071-4ecf-9128-eb2d2b1f50f0.jpg',
@@ -82,7 +82,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 9,
     name: 'historic',
-    description: 'This Property is considered historic',
+    description: 'This rental home possesses historical features',
     title: 'Historic Home',
     imageUrl:
       'https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg',
@@ -90,7 +90,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 10,
     name: 'countryside',
-    description: 'This Property is located on the countryside',
+    description: 'This is a countryside near home rental',
     title: 'Countryside',
     imageUrl:
       'https://a0.muscache.com/pictures/6ad4bd95-f086-437d-97e3-14d12155ddfe.jpg',
@@ -98,7 +98,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 11,
     name: 'omg',
-    description: 'This Property has a wow factor',
+    description: 'This property might surprise you',
     title: 'WOW!',
     imageUrl:
       'https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg',
@@ -106,7 +106,7 @@ export const categoryItems: IAppProps[] = [
   {
     id: 12,
     name: 'surfing',
-    description: 'This Property is located near to a surfing spot',
+    description: 'This home rental is close to surfing desired spots',
     title: 'Surfing',
     imageUrl:
       'https://a0.muscache.com/pictures/957f8022-dfd7-426c-99fd-77ed792f6d7a.jpg',
