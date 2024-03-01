@@ -49,11 +49,6 @@ const UserNav = async () => {
               </form>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/reservations" className="w-full">
-                Reservations
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
               <Link href="/homes" className="w-full">
                 My Listings
               </Link>
