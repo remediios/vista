@@ -11,7 +11,6 @@ const LoadingSkeleton = () => {
       <SkeletonCard />
       <SkeletonCard />
       <SkeletonCard />
-      <SkeletonCard />
     </div>
   );
 };
