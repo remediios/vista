@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import CategoryShowcase from '@/app/components/CategoryShowcase';
+import HomeMap from '@/app/components/HomeMap';
 import prisma from '@/app/lib/db';
 import { useCountries } from '@/app/lib/getCountries';
 import { Separator } from '@/components/ui/separator';
@@ -95,6 +96,8 @@ const IndividualHomePage = async ({
           <CategoryShowcase categoryName={homeData?.categoryName as string} />
           <Separator className="my-7 w-2/3" />
           <p className="text-muted-foreground">{homeData?.description}</p>
+          <Separator className="my-7 w-2/3" />
+          <HomeMap locationValue={country?.value as string} />
         </div>
       </div>
     </div>
