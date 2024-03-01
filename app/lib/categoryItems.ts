@@ -33,7 +33,7 @@ export const categoryItems: IAppProps[] = [
   },
   {
     id: 3,
-    name: 'erathhome',
+    name: 'earthhome',
     description: 'This Property is considerd a Earth Home',
     title: 'Earth Home',
     imageUrl:
