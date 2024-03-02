@@ -19,10 +19,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { SearchIcon } from 'lucide-react';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { useCountries } from '../lib/getCountries';
 import HomeMap from './HomeMap';
-import { Button } from '@/components/ui/button';
 import SearchBarSubmitButton from './SearchBarSubmitButton';
 import { Card, CardHeader } from '@/components/ui/card';
 import Counter from './Counter';

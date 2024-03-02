@@ -9,6 +9,10 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 interface SearchParams {
   searchParams?: {
     filter?: string;
+    country?: string;
+    guestCounter?: string;
+    roomCounter?: string;
+    bathroomCounter?: string;
   };
   userId?: string | undefined;
 }
@@ -20,6 +24,10 @@ async function getData({ searchParams, userId }: SearchParams) {
       addedDescription: true,
       addedLocation: true,
       categoryName: searchParams?.filter ?? undefined,
+      country: searchParams?.country ?? undefined,
+      guests: searchParams?.guestCounter ?? undefined,
+      bedrooms: searchParams?.roomCounter ?? undefined,
+      bathrooms: searchParams?.bathroomCounter ?? undefined,
     },
     select: {
       photo: true,
