@@ -36,7 +36,7 @@ const FavouritesPage = async () => {
   const favouritesData = await getFavouritesData(user.id);
 
   return (
-    <section className="container mx-auto px-5 lg:px-10 mt-10">
+    <section className="container mx-auto px-5 lg:px-10 mt-10 mb-[50px]">
       <h2 className="text-3xl font-semibold tracking-tight">Your Favourites</h2>
 
       {favouritesData.length === 0 ? (

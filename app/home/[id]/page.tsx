@@ -1,11 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
+import { createReservation } from '@/app/actions';
 import CategoryShowcase from '@/app/components/CategoryShowcase';
 import HomeMap from '@/app/components/HomeMap';
 import SelectCalendar from '@/app/components/SelectCalendar';
 import prisma from '@/app/lib/db';
 import { useCountries } from '@/app/lib/getCountries';
+import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import Image from 'next/image';
+import Link from 'next/link';
 
 async function getHomeData(homeId: string) {
   const data = await prisma.home.findUnique({
@@ -23,8 +27,14 @@ async function getHomeData(homeId: string) {
       categoryName: true,
       country: true,
       createdAT: true,
+      Reservation: {
+        where: {
+          homeId,
+        },
+      },
       User: {
         select: {
+          id: true,
           firstName: true,
           profileImage: true,
         },
@@ -49,7 +59,8 @@ const IndividualHomePage = async ({
   const homeData = await getHomeData(params.id);
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(homeData?.country as string);
-
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
   const createdAtYear = getYear(homeData?.createdAT ?? new Date());
 
   return (
@@ -100,7 +111,23 @@ const IndividualHomePage = async ({
           <Separator className="my-7 w-2/3" />
           <HomeMap locationValue={country?.value as string} />
         </div>
-        <SelectCalendar />
+        <form
+          action={createReservation}
+          className="flex flex-col items-center justify-start"
+        >
+          <input type="hidden" name="userId" value={user?.id} />
+          <input type="hidden" name="homeId" value={params.id} />
+          <SelectCalendar reservations={homeData?.Reservation} />
+          {user?.id ? (
+            <Button className="w-4/5" type="submit">
+              Make your reservation!
+            </Button>
+          ) : (
+            <Button className="w-4/5" asChild>
+              <Link href="/api/auth/login">Make a reservation</Link>
+            </Button>
+          )}
+        </form>
       </div>
     </div>
   );

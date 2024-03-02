@@ -5,7 +5,16 @@ import { DateRange } from 'react-date-range';
 import { useState } from 'react';
 import { eachDayOfInterval } from 'date-fns';
 
-const SelectCalendar = () => {
+interface CalendarProps {
+  reservations:
+    | {
+        startDate: Date;
+        endDate: Date;
+      }[]
+    | undefined;
+}
+
+const SelectCalendar = ({ reservations }: CalendarProps) => {
   const [range, setRange] = useState([
     {
       startDate: new Date(),
@@ -13,17 +22,40 @@ const SelectCalendar = () => {
       key: 'dateSelection',
     },
   ]);
+  let disabledDates: Date[] = [];
+
+  reservations?.forEach((reservation) => {
+    const dateRange = eachDayOfInterval({
+      start: new Date(reservation.startDate),
+      end: new Date(reservation.endDate),
+    });
+
+    disabledDates.push(...dateRange);
+  });
 
   return (
-    <DateRange
-      date={new Date()}
-      showDateDisplay={false}
-      rangeColors={['#16a34a']}
-      ranges={range}
-      onChange={(item) => setRange([item.dateSelection] as any)}
-      minDate={new Date()}
-      direction="vertical"
-    />
+    <>
+      <input
+        type="hidden"
+        name="startDate"
+        value={range[0].startDate.toISOString()}
+      />
+      <input
+        type="hidden"
+        name="endDate"
+        value={range[0].endDate.toISOString()}
+      />
+      <DateRange
+        date={new Date()}
+        showDateDisplay={false}
+        rangeColors={['#16a34a']}
+        ranges={range}
+        onChange={(item) => setRange([item.dateSelection] as any)}
+        minDate={new Date()}
+        direction="vertical"
+        disabledDates={disabledDates}
+      />
+    </>
   );
 };
 

@@ -41,7 +41,7 @@ const UserHomesPage = async () => {
   const userHomesData = await getUserHomes(user.id);
 
   return (
-    <section className="container mx-auto px-5 lg:px-10 mt-10">
+    <section className="container mx-auto px-5 lg:px-10 mt-10 mb-[50px]">
       <h2 className="text-3xl font-semibold tracking-tight">Your Homes</h2>
       {userHomesData.length === 0 ? (
         <NoItem
