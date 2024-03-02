@@ -6,6 +6,13 @@ import {
   DeleteFromFavouriteButton,
 } from '../SubmitButtons';
 import { addToFavourite, deleteFromFavourite } from '@/app/actions';
+import { daysRemaining, formatDate } from '@/app/lib/formatDate';
+
+interface IReservation {
+  id: string;
+  startDate: Date;
+  endDate: Date;
+}
 
 interface IListingCardProps {
   imagePath: string;
@@ -17,6 +24,7 @@ interface IListingCardProps {
   favouriteId: string;
   homeId: string;
   pathName: string;
+  reservation?: IReservation;
 }
 
 const ListingCard = ({
@@ -29,9 +37,12 @@ const ListingCard = ({
   favouriteId,
   homeId,
   pathName,
+  reservation,
 }: IListingCardProps) => {
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(location);
+
+  console.log(reservation);
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -69,9 +80,35 @@ const ListingCard = ({
         <p className="text-muted-foreground text-sm line-clamp-2">
           {description}
         </p>
-        <p className="pt-2 text-muted-foreground">
-          <span className="font-medium text-black">€ {price}</span> night
-        </p>
+        {reservation ? (
+          <div className="flex items-center justify-between mt-1">
+            <p className="pt-2 text-muted-foreground">
+              <span className="font-medium text-black">
+                {formatDate(reservation.startDate)} -{' '}
+                {formatDate(reservation.endDate)}
+              </span>
+            </p>
+            <p className="pt-2 text-muted-foreground">
+              <span className="text-primary">
+                {daysRemaining(reservation.startDate) !== 0 ? (
+                  <>
+                    in {''}
+                    <p className="inline-block font-semibold">
+                      {daysRemaining(reservation.startDate)}
+                    </p>{' '}
+                    days
+                  </>
+                ) : (
+                  <p className="inline-block font-semibold">Ready? </p>
+                )}
+              </span>
+            </p>
+          </div>
+        ) : (
+          <p className="pt-2 text-muted-foreground">
+            <span className="font-medium text-black">€ {price}</span> night
+          </p>
+        )}
       </Link>
     </div>
   );

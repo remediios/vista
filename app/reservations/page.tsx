@@ -10,6 +10,9 @@ async function getReservationsData(userId: string) {
       userId,
     },
     select: {
+      id: true,
+      startDate: true,
+      endDate: true,
       Home: {
         select: {
           id: true,
@@ -36,7 +39,6 @@ const ReservationsPage = async () => {
   if (!user) return redirect('/');
 
   const reservationsData = await getReservationsData(user.id);
-  console.log(reservationsData);
 
   return (
     <section className="container mx-auto px-5 lg:px-10 mt-10 mb-[50px]">
@@ -65,6 +67,11 @@ const ReservationsPage = async () => {
               isInFavouriteList={
                 (item.Home?.Favourite.length as number) > 0 ? true : false
               }
+              reservation={{
+                id: item.id,
+                startDate: item.startDate,
+                endDate: item.endDate,
+              }}
             />
           ))}
         </div>
