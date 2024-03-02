@@ -32,5 +32,6 @@ export async function GET() {
     });
   }
 
-  return NextResponse.redirect('http://localhost:3000');
+  //To change depending on running instance of the application, either local or deployed
+  return NextResponse.redirect('https://vista-woad.vercel.app');
 }
