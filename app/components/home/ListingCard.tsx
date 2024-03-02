@@ -42,8 +42,6 @@ const ListingCard = ({
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(location);
 
-  console.log(reservation);
-
   return (
     <div className="flex flex-col gap-y-2">
       <div className="relative h-72">
