@@ -1,6 +1,6 @@
 import LoadingSkeleton from '../components/LoadingSkeleton';
 
-const FavouritesLoading = () => {
+const ReservationsLoading = () => {
   return (
     <section className="container mx-atuo px-5 lg:px-10 mt-10 mb-20">
       <h2 className="text-3xl font-semibold tracking-tight">
@@ -11,4 +11,4 @@ const FavouritesLoading = () => {
   );
 };
 
-export default FavouritesLoading;
+export default ReservationsLoading;
