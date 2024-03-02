@@ -3,6 +3,7 @@ import { createReservation } from '@/app/actions';
 import CategoryShowcase from '@/app/components/CategoryShowcase';
 import HomeMap from '@/app/components/HomeMap';
 import SelectCalendar from '@/app/components/SelectCalendar';
+import { ReservationButtons } from '@/app/components/SubmitButtons';
 import prisma from '@/app/lib/db';
 import { useCountries } from '@/app/lib/getCountries';
 import { Button } from '@/components/ui/button';
@@ -119,9 +120,7 @@ const IndividualHomePage = async ({
           <input type="hidden" name="homeId" value={params.id} />
           <SelectCalendar reservations={homeData?.Reservation} />
           {user?.id ? (
-            <Button className="w-4/5" type="submit">
-              Make your reservation!
-            </Button>
+            <ReservationButtons />
           ) : (
             <Button className="w-4/5" asChild>
               <Link href="/api/auth/login">Make a reservation</Link>

@@ -77,3 +77,21 @@ export const DeleteFromFavouriteButton = () => {
     </>
   );
 };
+
+export const ReservationButtons = () => {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button className="w-4/5" disabled>
+          <Loader2 className="h-4 w-4 animate-spin mr-2" /> Please wait...
+        </Button>
+      ) : (
+        <Button className="w-4/5" type="submit">
+          Make your reservation!
+        </Button>
+      )}
+    </>
+  );
+};
