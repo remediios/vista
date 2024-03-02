@@ -3,8 +3,10 @@ import prisma from '../lib/db';
 import { redirect } from 'next/navigation';
 import NoItem from '../components/home/NoItem';
 import ListingCard from '../components/home/ListingCard';
+import { unstable_noStore as noStore } from 'next/cache';
 
 async function getUserHomes(userId: string) {
+  noStore();
   const data = await prisma.home.findMany({
     where: {
       userId,

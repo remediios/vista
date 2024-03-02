@@ -2,10 +2,11 @@ import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import prisma from '../lib/db';
 import { redirect } from 'next/navigation';
 import NoItem from '../components/home/NoItem';
-import Link from 'next/link';
 import ListingCard from '../components/home/ListingCard';
+import { unstable_noStore as noStore } from 'next/cache';
 
 async function getFavouritesData(userId: string) {
+  noStore();
   const data = await prisma.favourite.findMany({
     where: {
       userId,
