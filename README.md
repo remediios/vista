@@ -34,10 +34,10 @@ VISTA is a comprehensive home rental booking system application built using Next
 - **NextJS:** A React framework for building server-side rendered applications.
 - **Supabase:** An open-source alternative to Firebase providing a backend-as-a-service.
 - **Prisma:** A database toolkit to query, migrate, and model your database.
-- **Kinde:** A tool for generating type-safe APIs for your Prisma database.
+- **Kinde:** An authentication tool for securing user registration and login processes.
 - **ShadcnUI:** A library of reusable UI components for React.
 - **TailwindCSS:** A utility-first CSS framework for rapidly building custom user interfaces.
-
+  
 
 ## Installation
 
