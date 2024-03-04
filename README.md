@@ -48,7 +48,8 @@ To install and run VISTA locally, follow these steps:
 3. Install the dependencies: `npm install`
 4. Create a `.env` file based on the provided `.env.example`
 5. Add all necessary credentials keys
-6. Run the application with `npm run dev`
+6. Push the Prisma schema to reflect on the Supabase PostgreSQL Database with `npx prisma db push`
+7. Run the application with `npm run dev`
 
 After completing these steps, you should be able to run this project locally. If you encounter any issues or have any questions, please don't hesitate to reach out.
 
